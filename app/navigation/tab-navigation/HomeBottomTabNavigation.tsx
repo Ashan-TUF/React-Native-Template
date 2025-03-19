@@ -8,7 +8,7 @@ import HomeProductScreen from "@/components/ui/screen/home/HomeProductScreeen";
 import {Ionicons} from "@expo/vector-icons";
 import {COLORS} from "@/constants/ColorPallet";
 
-const logo = require('../../../assets/logo/Wattpad_logo.png');
+const logo = require('@/assets/logo/Wattpad_logo.png');
 
 const Tab = createBottomTabNavigator();
 export default function HomeBottomTabNavigation({navigation}:any){

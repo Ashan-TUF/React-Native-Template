@@ -5,7 +5,7 @@ import {useState} from "react";
 
 const logo = require('@/assets/logo/Wattpad_logo.png');
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}: any) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordDisplayState, setPasswordDisplayState] = useState(false);
@@ -19,6 +19,7 @@ export default function LoginScreen() {
                     <TextInput
                         label="Root Email"
                         value={email}
+                        mode={'outlined'}
                         onChangeText={text => setEmail(text)}
                     />
                 </View>
@@ -27,13 +28,14 @@ export default function LoginScreen() {
                         label="Password"
                         secureTextEntry={!passwordDisplayState}
                         value={password}
+                        mode={'outlined'}
                         onChangeText={text => setPassword(text)}
                         right={<TextInput.Icon onPress={() => {
                             setPasswordDisplayState(!passwordDisplayState)
                         }} size={20} icon={passwordDisplayState ? 'eye' : 'eye-off'}/>}
                     />
                 </View>
-                <TouchableOpacity style={styles.forgotPasswordButton}>
+                <TouchableOpacity style={styles.forgotPasswordButton} onPress={()=>{navigation.navigate('ChangePassword')}}>
                     <Text style={styles.forgotPasswordText}>Forgot password?</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.loginButton}>
@@ -54,7 +56,8 @@ export default function LoginScreen() {
                         <Icon size={20} source={'github'}/>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={{...styles.loginButton,backgroundColor:COLORS.primary}}>
+                <TouchableOpacity style={{...styles.loginButton, backgroundColor: COLORS.primary}}
+                                  onPress={() => navigation.navigate("SignUp")}>
                     <Text style={styles.loginText}>Register with the email</Text>
                 </TouchableOpacity>
             </View>
@@ -64,38 +67,38 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
     iconOuter: {
         backgroundColor: COLORS.darkGray,
-        width:50,
-        height:50,
-        borderRadius:50,
-        alignItems:'center',
-        justifyContent:'center'
+        width: 50,
+        height: 50,
+        borderRadius: 50,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     socialLoginWrapper: {
         flexDirection: 'row',
-        marginTop:20,
-        justifyContent:'space-around'
+        marginTop: 20,
+        justifyContent: 'space-around'
     },
     separateText: {
         textAlign: 'center',
         marginTop: 50
     },
-    loginText:{
-        color:COLORS.light
+    loginText: {
+        color: COLORS.light
     },
-    loginButton:{
-        backgroundColor:COLORS.blue,
-        height:50,
-        marginTop:30,
-        borderRadius:3,
-        alignItems:'center',
-        justifyContent:'center'
+    loginButton: {
+        backgroundColor: COLORS.blue,
+        height: 50,
+        marginTop: 30,
+        borderRadius: 3,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    forgotPasswordText:{
-        color:COLORS.blue,
-        textDecorationLine:'underline'
+    forgotPasswordText: {
+        color: COLORS.blue,
+        textDecorationLine: 'underline'
     },
-    forgotPasswordButton:{
-        alignItems:'flex-end'
+    forgotPasswordButton: {
+        alignItems: 'flex-end'
     },
     formGroup: {
         marginBottom: 10
